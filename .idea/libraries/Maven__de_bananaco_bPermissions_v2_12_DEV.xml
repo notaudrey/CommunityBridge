@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: de.bananaco:bPermissions:v2.12-DEV">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/bananaco/bPermissions/v2.12-DEV/bPermissions-v2.12-DEV.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/de/bananaco/bPermissions/v2.12-DEV/bPermissions-v2.12-DEV-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/de/bananaco/bPermissions/v2.12-DEV/bPermissions-v2.12-DEV-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

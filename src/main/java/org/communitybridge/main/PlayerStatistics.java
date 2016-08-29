@@ -1,133 +1,110 @@
 package org.communitybridge.main;
 
-import java.text.SimpleDateFormat;
 import org.communitybridge.utility.StringUtilities;
 
-public class PlayerStatistics
-{
-	private final SimpleDateFormat dateFormat;
-	private String userID;
-	private String onlineStatus;
-	private long lastOnlineTime;
-	private long gameTime;
-	private int level;
-	private int totalXP;
-	private float currentXP;
-	private double health;
-	private int lifeTicks;
+import java.text.SimpleDateFormat;
 
-	PlayerStatistics(SimpleDateFormat dateFormat)
-	{
-		this.dateFormat = dateFormat;
-	}
+public class PlayerStatistics {
+    private final SimpleDateFormat dateFormat;
+    private String userID;
+    private String onlineStatus;
+    private long lastOnlineTime;
+    private long gameTime;
+    private int level;
+    private int totalXP;
+    private float currentXP;
+    private double health;
+    private int lifeTicks;
 
-	public String getUserID()
-	{
-		return userID;
-	}
+    PlayerStatistics(SimpleDateFormat dateFormat) {
+        this.dateFormat = dateFormat;
+    }
 
-	public void setUserID(String userID)
-	{
-		this.userID = userID;
-	}
+    public String getUserID() {
+        return userID;
+    }
 
-	public String getOnlineStatus()
-	{
-		return onlineStatus;
-	}
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
-	public void setOnlineStatus(String onlineStatus)
-	{
-		this.onlineStatus = onlineStatus;
-	}
+    public String getOnlineStatus() {
+        return onlineStatus;
+    }
 
-	public int getLastOnlineTimeInSeconds()
-	{
-		return (int)(lastOnlineTime / 1000L);
-	}
+    public void setOnlineStatus(String onlineStatus) {
+        this.onlineStatus = onlineStatus;
+    }
 
-	public String getLastOnlineTimeFormatted()
-	{
-		return dateFormat.format(lastOnlineTime);
-	}
+    public int getLastOnlineTimeInSeconds() {
+        return (int) (lastOnlineTime / 1000L);
+    }
 
-	public void setLastOnlineTime(long lastonlineTime)
-	{
-		this.lastOnlineTime = lastonlineTime;
-	}
+    public String getLastOnlineTimeFormatted() {
+        return dateFormat.format(lastOnlineTime);
+    }
 
-	public long getGameTime()
-	{
-		return gameTime;
-	}
+    public void setLastOnlineTime(long lastonlineTime) {
+        this.lastOnlineTime = lastonlineTime;
+    }
 
-	public String getGameTimeFormatted()
-	{
-		return StringUtilities.timeElapsedToString(gameTime);
-	}
+    public long getGameTime() {
+        return gameTime;
+    }
 
-	public void setGameTime(long gameTime)
-	{
-		this.gameTime = gameTime;
-	}
+    public void setGameTime(long gameTime) {
+        this.gameTime = gameTime;
+    }
 
-	public int getLevel()
-	{
-		return level;
-	}
+    public String getGameTimeFormatted() {
+        return StringUtilities.timeElapsedToString(gameTime);
+    }
 
-	public void setLevel(int level)
-	{
-		this.level = level;
-	}
+    public int getLevel() {
+        return level;
+    }
 
-	public int getTotalXP()
-	{
-		return totalXP;
-	}
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
-	public void setTotalXP(int totalxp)
-	{
-		this.totalXP = totalxp;
-	}
+    public int getTotalXP() {
+        return totalXP;
+    }
 
-	public float getCurrentXP()
-	{
-		return currentXP;
-	}
+    public void setTotalXP(int totalxp) {
+        this.totalXP = totalxp;
+    }
 
-	public String getCurrentXPFormatted()
-	{
-		return ((int)(getCurrentXP() * 100)) + "%";
-	}
+    public float getCurrentXP() {
+        return currentXP;
+    }
 
-	public void setCurrentXP(float currentxp)
-	{
-		this.currentXP = currentxp;
-	}
+    public void setCurrentXP(float currentxp) {
+        this.currentXP = currentxp;
+    }
 
-	public double getHealth()
-	{
-		return health;
-	}
+    public String getCurrentXPFormatted() {
+        return ((int) (getCurrentXP() * 100)) + "%";
+    }
 
-	public void setHealth(double health)
-	{
-		this.health = health;
-	}
+    public double getHealth() {
+        return health;
+    }
 
-	public int getLifeTicks()
-	{
-		return lifeTicks;
-	}
+    public void setHealth(double health) {
+        this.health = health;
+    }
 
-	public String getLifeTicksFormatted()
-	{
-		return StringUtilities.timeElapsedToString(lifeTicks / 20);
-	}
+    public int getLifeTicks() {
+        return lifeTicks;
+    }
 
-	public void setLifeTicks(int lifeticks)
-	{
-		this.lifeTicks = lifeticks;
-	}
+    public void setLifeTicks(int lifeticks) {
+        this.lifeTicks = lifeticks;
+    }
+
+    public String getLifeTicksFormatted() {
+        return StringUtilities.timeElapsedToString(lifeTicks / 20);
+    }
 }

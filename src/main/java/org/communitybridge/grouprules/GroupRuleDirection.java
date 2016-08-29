@@ -5,8 +5,7 @@ package org.communitybridge.grouprules;
  *
  * @author Iain E. Davis <iain@ruhlendavis.org>
  */
-public enum GroupRuleDirection
-{
-	MINECRAFT,
-	WEBAPP
+public enum GroupRuleDirection {
+    MINECRAFT,
+    WEBAPP
 }

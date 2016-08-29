@@ -1,9 +1,5 @@
 package org.communitybridge.achievement;
 
-import java.util.EnumMap;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -13,112 +9,98 @@ import org.bukkit.inventory.ItemStack;
 import org.communitybridge.main.BukkitWrapper;
 import org.communitybridge.main.Environment;
 
-public abstract class Achievement
-{
-	protected Environment environment;
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-	protected int limit;
-	protected double cashReward;
-	protected Map<Material, Integer> itemRewards = new EnumMap<Material, Integer>(Material.class);
+public abstract class Achievement {
+    protected Environment environment;
 
-	protected BukkitWrapper bukkit = new BukkitWrapper();
+    protected int limit;
+    protected double cashReward;
+    protected Map<Material, Integer> itemRewards = new EnumMap<Material, Integer>(Material.class);
 
-	public abstract boolean playerQualifies(Player player, PlayerAchievementState state);
+    protected BukkitWrapper bukkit = new BukkitWrapper();
 
-	public Achievement(Environment environment)
-	{
-		this.environment = environment;
-	}
+    public Achievement(Environment environment) {
+        this.environment = environment;
+    }
 
-	public void rewardPlayer(Player player, PlayerAchievementState state)
-	{
-		if (environment.getConfiguration().economyEnabled)
-		{
-			environment.getEconomy().depositPlayer(player, cashReward);
-		}
+    public abstract boolean playerQualifies(Player player, PlayerAchievementState state);
 
-		for (Entry<Material, Integer> entry : itemRewards.entrySet())
-		{
-			ItemStack stack = new ItemStack(entry.getKey(), entry.getValue());
-			player.getInventory().addItem(stack);
-		}
-		if (!itemRewards.isEmpty())
-		{
-			player.updateInventory();
-		}
-	}
+    public void rewardPlayer(Player player, PlayerAchievementState state) {
+        if(environment.getConfiguration().economyEnabled) {
+            environment.getEconomy().depositPlayer(player, cashReward);
+        }
 
-	protected boolean canRewardAllItemRewards(Player player)
-	{
-		final Inventory testInventory = bukkit.getServer().createInventory(null, player.getInventory().getType());
-		testInventory.setContents(player.getInventory().getContents());
+        for(Entry<Material, Integer> entry : itemRewards.entrySet()) {
+            ItemStack stack = new ItemStack(entry.getKey(), entry.getValue());
+            player.getInventory().addItem(stack);
+        }
+        if(!itemRewards.isEmpty()) {
+            player.updateInventory();
+        }
+    }
 
-		for (Entry<Material, Integer> entry : itemRewards.entrySet())
-		{
-			ItemStack stack = new ItemStack(entry.getKey(), entry.getValue());
-			if (!testInventory.addItem(stack).isEmpty())
-			{
-				return false;
-			}
-		}
+    protected boolean canRewardAllItemRewards(Player player) {
+        final Inventory testInventory = bukkit.getServer().createInventory(null, player.getInventory().getType());
+        testInventory.setContents(player.getInventory().getContents());
 
-		return true;
-	}
+        for(Entry<Material, Integer> entry : itemRewards.entrySet()) {
+            ItemStack stack = new ItemStack(entry.getKey(), entry.getValue());
+            if(!testInventory.addItem(stack).isEmpty()) {
+                return false;
+            }
+        }
 
-	public void load(YamlConfiguration configuration, String path)
-	{
-		limit = configuration.getInt(path + ".Limit", 1);
-		cashReward = configuration.getDouble(path + ".Money", 0.0);
+        return true;
+    }
 
-		ConfigurationSection itemsSection = configuration.getConfigurationSection(path + ".Items");
+    public void load(YamlConfiguration configuration, String path) {
+        limit = configuration.getInt(path + ".Limit", 1);
+        cashReward = configuration.getDouble(path + ".Money", 0.0);
 
-		if (itemsSection == null)
-		{
-			return;
-		}
+        ConfigurationSection itemsSection = configuration.getConfigurationSection(path + ".Items");
 
-		Set<String> itemSet = itemsSection.getKeys(false);
+        if(itemsSection == null) {
+            return;
+        }
 
-		for (String key : itemSet)
-		{
-			Material material = Material.getMaterial(key);
-			if (material == null)
-			{
-				environment.getLog().warning("Invalid material in achievements file");
-				continue;
-			}
-		  int amount = itemsSection.getInt(key, 1);
-			itemRewards.put(material, amount);
-		}
-	}
+        Set<String> itemSet = itemsSection.getKeys(false);
 
-	public int getLimit()
-	{
-		return limit;
-	}
+        for(String key : itemSet) {
+            Material material = Material.getMaterial(key);
+            if(material == null) {
+                environment.getLog().warning("Invalid material in achievements file");
+                continue;
+            }
+            int amount = itemsSection.getInt(key, 1);
+            itemRewards.put(material, amount);
+        }
+    }
 
-	public void setLimit(int limit)
-	{
-		this.limit = limit;
-	}
+    public int getLimit() {
+        return limit;
+    }
 
-	public double getCashReward()
-	{
-		return cashReward;
-	}
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 
-	public void setCashReward(double cashReward)
-	{
-		this.cashReward = cashReward;
-	}
+    public double getCashReward() {
+        return cashReward;
+    }
 
-	public Map<Material, Integer> getItemRewards()
-	{
-		return itemRewards;
-	}
+    public void setCashReward(double cashReward) {
+        this.cashReward = cashReward;
+    }
 
-	public void setItemRewards(Map<Material, Integer> itemRewards)
-	{
-		this.itemRewards = itemRewards;
-	}
+    public Map<Material, Integer> getItemRewards() {
+        return itemRewards;
+    }
+
+    public void setItemRewards(Map<Material, Integer> itemRewards) {
+        this.itemRewards = itemRewards;
+    }
 }

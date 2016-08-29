@@ -9,32 +9,25 @@ import org.bukkit.entity.Player;
 import org.communitybridge.main.Environment;
 
 /**
- *
  * @author Iain E. Davis <iain@ruhlendavis.org>
  */
-public class AchievementSectionPostCount extends AchievementPostCount
-{
-	private String sectionID;
+public class AchievementSectionPostCount extends AchievementPostCount {
+    private String sectionID;
 
-	public AchievementSectionPostCount(Environment environment)
-	{
-		super(environment);
-	}
-	
-	@Override
-	public boolean playerQualifies(Player player, PlayerAchievementState state)
-	{
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    public AchievementSectionPostCount(Environment environment) {
+        super(environment);
+    }
 
-	public String getSectionID()
-	{
-		return sectionID;
-	}
+    @Override
+    public boolean playerQualifies(Player player, PlayerAchievementState state) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-	public void setSectionID(String sectionName)
-	{
-		this.sectionID = sectionName;
-	}
+    public String getSectionID() {
+        return sectionID;
+    }
 
+    public void setSectionID(String sectionName) {
+        this.sectionID = sectionName;
+    }
 }

@@ -1,8 +1,5 @@
 package org.communitybridge.main;
 
-import java.util.Collection;
-import java.util.UUID;
-
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -10,41 +7,36 @@ import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
 
-public class BukkitWrapper
-{
-	public OfflinePlayer getOfflinePlayer(UUID uuid)
-	{
-		return Bukkit.getOfflinePlayer(uuid);
-	}
+import java.util.Collection;
+import java.util.UUID;
 
-	@SuppressWarnings("deprecation")
-	public OfflinePlayer getOfflinePlayer(String name)
-	{
-		return Bukkit.getOfflinePlayer(name);
-	}
+public class BukkitWrapper {
+    public OfflinePlayer getOfflinePlayer(UUID uuid) {
+        return Bukkit.getOfflinePlayer(uuid);
+    }
 
-	public Player getPlayer(UUID uuid)
-	{
-		return Bukkit.getPlayer(uuid);
-	}
+    @SuppressWarnings("deprecation")
+    public OfflinePlayer getOfflinePlayer(String name) {
+        return Bukkit.getOfflinePlayer(name);
+    }
 
-	public Server getServer()
-	{
-		return Bukkit.getServer();
-	}
+    public Player getPlayer(UUID uuid) {
+        return Bukkit.getPlayer(uuid);
+    }
 
-	public BanList getBanList(BanList.Type type)
-	{
-		return Bukkit.getBanList(type);
-	}
+    public Server getServer() {
+        return Bukkit.getServer();
+    }
 
-	public PluginManager getPluginManager()
-	{
-		return Bukkit.getPluginManager();
-	}
+    public BanList getBanList(BanList.Type type) {
+        return Bukkit.getBanList(type);
+    }
 
-	public Collection<? extends Player> getOnlinePlayers()
-	{
-		return Bukkit.getOnlinePlayers();
-	}
+    public PluginManager getPluginManager() {
+        return Bukkit.getPluginManager();
+    }
+
+    public Collection<? extends Player> getOnlinePlayers() {
+        return Bukkit.getOnlinePlayers();
+    }
 }
